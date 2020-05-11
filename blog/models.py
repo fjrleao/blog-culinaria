@@ -8,6 +8,9 @@ class Sessao(models.Model):
     def __str__(self):
         return self.nome
 
+    class Meta:
+        verbose_name_plural = 'Sessoes'
+
 class Postagem(models.Model):
     titulo =  models.CharField(max_length=125, null=False)
     texto = models.TextField(null=False)
@@ -21,6 +24,9 @@ class Postagem(models.Model):
     def __str__(self):
         return self.titulo
 
+    class Meta:
+        verbose_name_plural = 'Postagens'
+
 class Comentario(models.Model):
     nome = models.CharField(max_length=125, null=False, editable=False)
     texto = models.TextField(max_length=255, null=False, editable=False)
@@ -31,3 +37,6 @@ class Comentario(models.Model):
 
     def __str__(self):
         return self.nome
+
+    class Meta:
+        ordering = ['data']
