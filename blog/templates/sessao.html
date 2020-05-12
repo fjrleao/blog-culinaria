@@ -1,5 +1,32 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block titulo %}
     {{sessao.nome}}
 {% endblock titulo %}
+
+{% block conteudo %}
+    <div class="container-fluid">
+        <div class="row">
+            {% if postagens %}
+                {% for postagem in postagens %}
+                    <div class="col-6">
+                        <div class="card mb-1 mt-4">
+                            <img class="card-img-top" src={% static 'images/pizza.jpg' %} alt="Imagem de capa do card">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href={% url 'postagem' sessao.slug postagem.slug %} class="text-body">{{postagem.titulo}}</a></h5>
+                                <p class="card-text">{{postagem.descricao}}</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">{{postagem.data}}</small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                Desculpa, ainda não temos postagens nessa sessão, volte mais tarde.
+            {% endif %}
+        </div>
+    </div>
+{% endblock conteudo %}
