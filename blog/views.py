@@ -16,7 +16,7 @@ def home(request):
 def sessao(request, slug):
     template = 'sessao.html'
     sessoes = Sessao.objects.all()
-    sessaoAtual = Sessao.objects.filter(slug=slug).first()
+    sessaoAtual = Sessao.objects.get(slug=slug)
     postagens = Postagem.objects.filter(sessao=sessaoAtual, postar=True)
     context = {
         "sessao" : sessaoAtual,
@@ -28,4 +28,10 @@ def sessao(request, slug):
 #pagina que irá renderizar as postagens
 def postagem(request, slugSessao, slugPostagem):
     template = 'postagem.html'
-    return render(request, template)
+    sessoes = Sessao.objects.all()
+    postagem = Postagem.objects.get(slug=slugPostagem)
+    context = {
+        "sessoes" : sessoes,
+        "postagem" : postagem
+    }
+    return render(request, template, context)

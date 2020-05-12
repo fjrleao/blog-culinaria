@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class Sessao(models.Model):
     nome = models.CharField(max_length=125, null=False)
@@ -14,7 +15,8 @@ class Sessao(models.Model):
 class Postagem(models.Model):
     titulo =  models.CharField(max_length=125, null=False)
     descricao = models.TextField(max_length=512, null=False)
-    texto = models.TextField(null=False)
+    imagem = models.ImageField()
+    texto = RichTextUploadingField()
     slug = models.SlugField()
     data = models.DateField(auto_now=True)
     postar = models.BooleanField(default=False)

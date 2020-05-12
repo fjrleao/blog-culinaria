@@ -13,7 +13,7 @@
                 {% for postagem in postagens %}
                     <div class="col-6">
                         <div class="card mb-1 mt-4">
-                            <img class="card-img-top" src={% static 'images/pizza.jpg' %} alt="Imagem de capa do card">
+                            <img class="card-img-top" src={{postagem.imagem}} alt="Imagem de capa do card">
                             <div class="card-body">
                                 <h5 class="card-title"><a href={% url 'postagem' sessao.slug postagem.slug %} class="text-body">{{postagem.titulo}}</a></h5>
                                 <p class="card-text">{{postagem.descricao}}</p>
@@ -25,7 +25,11 @@
                     </div>
                 {% endfor %}
             {% else %}
-                Desculpa, ainda não temos postagens nessa sessão, volte mais tarde.
+                <div class="container mt-5 mb-5">
+                    <div class="alert alert-danger" role="alert">
+                        Desculpa, ainda não temos postagens nessa sessão, volte mais tarde.
+                    </div>
+                </div>
             {% endif %}
         </div>
     </div>

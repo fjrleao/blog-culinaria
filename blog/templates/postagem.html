@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
+    {{postagem.titulo}}
 {% endblock titulo %}
 
 {% block conteudo %}
+    <div class="container mt-4 mb-4">
+        <div class="row">
+            <h3>{{postagem.titulo}}</h3>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{postagem.texto | safe}}
+            </div>
+        </div>
+    </div>
 {% endblock conteudo %}
