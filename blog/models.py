@@ -17,7 +17,7 @@ class Postagem(models.Model):
     slug = models.SlugField()
     data = models.DateField(auto_now=True)
     postar = models.BooleanField(default=False)
-    curtidas = models.IntegerField()
+    curtidas = models.IntegerField(editable=False, null=True)
     sessao = models.ForeignKey(Sessao, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 

@@ -1,3 +1,10 @@
 from django.shortcuts import render
+from .models import Sessao
 
-# Create your views here.
+def home(request):
+    template = 'home.html'
+    sessoes = Sessao.objects.all()
+    context = {
+        "sessoes" : sessoes
+    }
+    return render(request, template, context)

@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'css/bootstrap.min.css' %}>
+    <title>{% block titulo %}{% endblock titulo %}</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-light shadow">
+        <img class="navbar-brand" src="https://image.flaticon.com/icons/svg/1973/1973685.svg" width="50">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Página inicial</a>
+                </li>
+                {% for sessao in sessoes %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{sessao.nome}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<main>
+{% block conteudo %}
+{% endblock conteudo %}
+</main>
+
+<footer>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+        <div class="mx-auto">
+            <div class="text-secondary navbar-text">
+                Cozinha em chamas &nbsp; | &nbsp;
+                Desenvolvido por <a href="https://fjrleao.herokuapp.com/" target="_blank">Fábio Junior</a>
+            </div>
+        </div>
+    </nav>
+</footer>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src= {% static 'js/bootstrap.min.js' %}></script>
+</body>
+</html>
