@@ -5,7 +5,7 @@ from .models import *
 def home(request):
     template = 'home.html'
     sessoes = Sessao.objects.all()
-    postagens = Postagem.objects.all()
+    postagens = Postagem.objects.filter(postar=True)
     context = {
         "sessoes" : sessoes,
         "postagens" : postagens

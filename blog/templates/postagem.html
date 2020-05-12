@@ -10,6 +10,14 @@
             <h3>{{postagem.titulo}}</h3>
         </div>
         <div class="row">
+            <h6 class="text-muted">{{postagem.descricao}}</h6>
+        </div>
+        <div class="row">
+            <div class="col">
+                <img class="img-fluid" src={{postagem.imagem.url}}>
+            </div>
+        </div>
+        <div class="row">
             <div class="col">
                 {{postagem.texto | safe}}
             </div>
