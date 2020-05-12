@@ -3,5 +3,6 @@ from django.conf.urls import url
 from blog import views
 
 urlpatterns = [
-    path('home/', views.home, name='home')
+    path('', views.home, name='home'),
+    path('<slug:slug>/', views.sessao, name='sessao')
 ]

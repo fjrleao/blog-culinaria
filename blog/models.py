@@ -13,6 +13,7 @@ class Sessao(models.Model):
 
 class Postagem(models.Model):
     titulo =  models.CharField(max_length=125, null=False)
+    descricao = models.TextField(max_length=512, null=False)
     texto = models.TextField(null=False)
     slug = models.SlugField()
     data = models.DateField(auto_now=True)

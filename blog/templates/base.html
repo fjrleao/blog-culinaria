@@ -25,7 +25,7 @@
                 </li>
                 {% for sessao in sessoes %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{sessao.nome}}</a>
+                        <a class="nav-link" href={% url 'sessao' sessao.slug %} >{{sessao.nome}}</a>
                     </li>
                 {% endfor %}
             </ul>
