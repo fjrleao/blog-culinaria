@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
 from .models import *
 
 #pagina inicial do site, exibe das 10 ultimas postagens
@@ -35,3 +36,15 @@ def postagem(request, slugSessao, slugPostagem):
         "postagem" : postagem
     }
     return render(request, template, context)
+
+@csrf_protect
+def comentar(request, slugSessao, slugPostagem):
+    if request.POST:
+        nome = request.POST.get('nome')
+        comentario = request.POST.get('comentario')
+        nota = request.POST.get('nota')
+        p = Postagem.objects.get(slug=slugPostagem)
+        c = Comentario(nome=nome, texto=comentario, avaliacao=nota, postagem=p)
+        c.save()
+
+    return redirect(postagem, slugSessao, slugPostagem)

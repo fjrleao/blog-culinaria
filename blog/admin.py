@@ -19,5 +19,5 @@ class PostagemAdmin(admin.ModelAdmin):
 
 @admin.register(Comentario)
 class ComentarioAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'aprovado', 'data']
+    list_display = ['nome', 'texto', 'aprovado', 'data']
     search_fields = ['data']
