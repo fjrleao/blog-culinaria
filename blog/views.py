@@ -31,9 +31,15 @@ def postagem(request, slugSessao, slugPostagem):
     template = 'postagem.html'
     sessoes = Sessao.objects.all()
     postagem = Postagem.objects.get(slug=slugPostagem)
+    comentarios = None
+    try:
+        comentarios = Comentario.objects.filter(postagem=postagem)
+    except:
+        pass
     context = {
         "sessoes" : sessoes,
-        "postagem" : postagem
+        "postagem" : postagem,
+        "comentarios" : comentarios
     }
     return render(request, template, context)
 

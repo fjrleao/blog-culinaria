@@ -23,14 +23,16 @@
             </div>
         </div>
         <div class="text-right mt-2">
-            <button type="button" class="btn btn-info  btn-md" data-toggle="modal" data-target="#modal">Comentar</button>
-            <button type="button" class="btn btn-secondary  btn-md">Todos os comentários</button>
+            <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#modalComentar">Comentar</button>
+            {% if comentarios %}
+                <button type="button" class="btn btn-secondary btn-md" data-toggle="collapse" data-target="#collapseComentarios">Todos os comentários</button>
+            {% endif %}
         <div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!-- Modal para formulario de enviar comentarios -->
+    <div class="modal fade" id="modalComentar" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="TituloModalLongoExemplo">Comentar</h5>
@@ -59,5 +61,41 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal para visualizar todos os comentarios-->
+    {% if comentarios  %}
+        <div class="modal fade" id="modalComentarios" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="TituloModalLongoExemplo">Comentários</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if comentarios %}
+        {% for comentario in comentarios %}
+            <div class="collapse mt-3 text-left" id="collapseComentarios">
+                <div class="card card-body">
+                    <h5 class="card-title">{{comentario.nome}}</h5>
+                    <p>{{comentario.texto}}</p>
+                    <small class="text-muted">{{comentario.data}}</small>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    
 
 {% endblock conteudo %}
