@@ -8,12 +8,17 @@
 
 {% block conteudo %}
     <!--Imagens passando na página inicial-->
-    <div id="carouselControls" class="carousel slide" data-ride="carousel">
+    <div id="carouselIndicators" class="carousel slide mb-3" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselIndicators" data-slide-to="2"></li>
+        </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class=" image-fluid d-block w-100" src={% static 'images/slide1.jpg' %}  alt="Primeiro Slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Asasdfasdfasdfasdf.</h5>
+                    <h2>Asasdfasdfasdfasdf.</h2>
                     <p>asdfasdfASFASDFASDFASDFASDFASDF</p>
                 </div>
             </div>
@@ -24,11 +29,11 @@
                 <img class="d-block w-100" src={% static 'images/slide3.jpg' %}  alt="Terceiro Slide">
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Anterior</span>
         </a>
-        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Próximo</span>
         </a>
@@ -37,9 +42,9 @@
     <!--Corpo da pagina home-->
     <div class="container-fluid">
         <div class="row">
-            <div class="card-deck">
-                {% for postagem in postagens %}
-                    <div class="card">
+            {% for postagem in postagens %}
+                <div class="col-sm-12 col-md-6 col-l-4 col-xl-3">
+                    <div class="card mb-1 mt-4">
                         <img class="card-img-top" src={{postagem.imagem.url}} alt="Imagem de capa do card">
                         <div class="card-body">
                             <h5 class="card-title"><a href={% url 'postagem' postagem.sessao.slug postagem.slug %} class="text-body">{{postagem.titulo}}</a></h5>
@@ -49,8 +54,8 @@
                             <small class="text-muted">{{postagem.data}}</small>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock conteudo %}
