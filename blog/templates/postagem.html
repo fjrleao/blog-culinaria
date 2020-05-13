@@ -7,13 +7,17 @@
 {% block conteudo %}
     <div class="container mt-4 mb-4">
         <div class="row">
-            <h3>{{postagem.titulo}}</h3>
+            <div class="col mb-3">
+                <h3>{{postagem.titulo}}</h3>
+            </div>
         </div>
         <div class="row">
-            <h6 class="text-muted">{{postagem.descricao}}</h6>
+            <div class="col mb-3">
+                <h6 class="text-muted">{{postagem.descricao}}</h6>
+            </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col mb-3">
                 <img class="img-fluid" src={{postagem.imagem.url}}>
             </div>
         </div>

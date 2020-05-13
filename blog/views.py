@@ -33,7 +33,7 @@ def postagem(request, slugSessao, slugPostagem):
     postagem = Postagem.objects.get(slug=slugPostagem)
     comentarios = None
     try:
-        comentarios = Comentario.objects.filter(postagem=postagem)
+        comentarios = Comentario.objects.filter(postagem=postagem, aprovado=True)
     except:
         pass
     context = {
