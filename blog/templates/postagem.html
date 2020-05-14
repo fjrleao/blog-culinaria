@@ -8,7 +8,7 @@
     <div class="container mt-4 mb-4">
         <div class="row">
             <div class="col mb-3">
-                <h3>{{postagem.titulo}}</h3>
+                <strong><h1>{{postagem.titulo}}</h1></strong>
             </div>
         </div>
         <div class="row">
@@ -66,7 +66,6 @@
         </div>
     </div>
 
-    <!-- Modal para visualizar todos os comentarios-->
     {% if comentarios  %}
         <div class="modal fade" id="modalComentarios" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
