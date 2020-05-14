@@ -26,6 +26,9 @@ class Postagem(models.Model):
     def __str__(self):
         return self.titulo
 
+    def get_absolute_url(self):
+        return (f'/{self.sessao.nome}/{self.slug}')
+
     class Meta:
         verbose_name_plural = 'Postagens'
 

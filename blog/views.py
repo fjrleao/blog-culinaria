@@ -19,19 +19,50 @@ def sessao(request, slug):
     sessoes = Sessao.objects.all()
     sessaoAtual = Sessao.objects.get(slug=slug)
     postagens = Postagem.objects.filter(sessao=sessaoAtual, postar=True).order_by('-data')
+    if postagens:
+        mensagem = ''
+    else:
+        mensagem = 'Desculpa, ainda não temos postagens nessa sessão, volte mais tarde.'
     context = {
         "sessao" : sessaoAtual,
         "sessoes" : sessoes,
-        "postagens" : postagens
+        "postagens" : postagens,
+        "mensagem" : mensagem
     }
     return render(request, template, context)
+
+def sobre(request):
+    template = 'sobre.html'
+    sessoes = Sessao.objects.all()
+    context = {
+        "sessoes": sessoes
+    }
+    return render(request, template, context)
+
+def pesquisar(request):
+    template = 'sessao.html'
+    if request.GET:
+        pesquisa = request.GET.get('pesquisa')
+        postagens = Postagem.objects.filter(titulo__icontains=pesquisa, postar=True).order_by('-data')
+        sessoes = Sessao.objects.all()
+        if postagens:
+            mensagem = ''
+        else:
+            mensagem = 'Desculpa, não temos postagens com o termo digitado. Tente pesquisa por outro termo.'
+        context = {
+            "sessoes" : sessoes,
+            "mensagem" : mensagem,
+            "postagens": postagens,
+            "sessao": "Pesquisa"
+        }
+        return render(request, template, context)
+    return render(request, template)
 
 #pagina que irá renderizar as postagens
 def postagem(request, slugSessao, slugPostagem):
     template = 'postagem.html'
     sessoes = Sessao.objects.all()
     postagem = Postagem.objects.get(slug=slugPostagem)
-    comentarios = None
     try:
         comentarios = Comentario.objects.filter(postagem=postagem, aprovado=True)
     except:
@@ -54,7 +85,3 @@ def comentar(request, slugSessao, slugPostagem):
         c.save()
 
     return redirect(postagem, slugSessao, slugPostagem)
-
-def sobre(request):
-    template = 'sobre.html'
-    return render(template)

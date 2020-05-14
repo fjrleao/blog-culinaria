@@ -47,7 +47,7 @@
                     <div class="card mb-1 mt-4">
                         <img class="card-img-top" src={{postagem.imagem.url}} alt="Imagem de capa do card">
                         <div class="card-body">
-                            <h5 class="card-title"><a href={% url 'postagem' postagem.sessao.slug postagem.slug %} class="text-body">{{postagem.titulo}}</a></h5>
+                            <h5 class="card-title"><a href={{ postagem.get_absolute_url }} class="text-body">{{postagem.titulo}}</a></h5>
                             <p class="card-text">{{postagem.descricao}}</p>
                         </div>
                         <div class="card-footer">
