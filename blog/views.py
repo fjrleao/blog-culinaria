@@ -54,3 +54,7 @@ def comentar(request, slugSessao, slugPostagem):
         c.save()
 
     return redirect(postagem, slugSessao, slugPostagem)
+
+def sobre(request):
+    template = 'sobre.html'
+    return render(template)
