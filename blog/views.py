@@ -6,7 +6,7 @@ from .models import *
 def home(request):
     template = 'home.html'
     sessoes = Sessao.objects.all()
-    postagens = Postagem.objects.filter(postar=True)
+    postagens = Postagem.objects.filter(postar=True).order_by('-data')[:10]
     context = {
         "sessoes" : sessoes,
         "postagens" : postagens
@@ -18,7 +18,7 @@ def sessao(request, slug):
     template = 'sessao.html'
     sessoes = Sessao.objects.all()
     sessaoAtual = Sessao.objects.get(slug=slug)
-    postagens = Postagem.objects.filter(sessao=sessaoAtual, postar=True)
+    postagens = Postagem.objects.filter(sessao=sessaoAtual, postar=True).order_by('-data')
     context = {
         "sessao" : sessaoAtual,
         "sessoes" : sessoes,
