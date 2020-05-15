@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
 
+    //dados que serao exibidos na tabela
     dados = [
         ["Farinha de trigo", 120, 7, 5, 3, "farinha-trigo"],
         ["Açucar cristal", 200, 10, 9, 4, "acucar-cristal"],
@@ -18,12 +19,14 @@ document.addEventListener("DOMContentLoaded", function(){
         ["Aveia", 80, 9, 3, 1.5 , "aveia"]
     ]
 
+    //funçao para percorrer o vetor de dados e chamar demais funçoes
     dados.forEach(element => {
         let objeto = criaObjeto(element)
         insereAba(objeto.nome, objeto.slug)
         insereConteudo(objeto.slug, criaTabela(objeto))
     })
 
+    //funçao para converter os dados do vetor em um objeto para facilitar a manipulaçao
     function criaObjeto(dados){
         let objeto = {
             "nome": dados[0],
@@ -65,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function(){
         return novo_conteudo
     }
 
+    //funçao que faz a criaçao da tabela e inserçao dos dados
     function criaTabela(objeto){
         let responsividade_tabela = document.createElement('div')
         responsividade_tabela.className = 'table-responsive'
