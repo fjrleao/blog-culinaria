@@ -64,7 +64,7 @@ def postagem(request, slugSessao, slugPostagem):
     sessoes = Sessao.objects.all()
     postagem = Postagem.objects.get(slug=slugPostagem)
     try:
-        comentarios = Comentario.objects.filter(postagem=postagem, aprovado=True)
+        comentarios = Comentario.objects.filter(postagem=postagem, aprovado=True).order_by('-data')
     except:
         pass
     context = {
