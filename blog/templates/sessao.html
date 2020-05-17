@@ -13,7 +13,7 @@
                 {% for postagem in postagens %}
                     <div class="col-sm-12 col-md-6 col-l-4 col-xl-3">
                         <div class="card mb-1 mt-4">
-                            <img class="card-img-top" src={{postagem.imagem.url}} alt="Imagem de capa do card">
+                            <img class="card-img-top" src={{postagem.imagem}} alt="Imagem de capa do card">
                             <div class="card-body">
                                 <h5 class="card-title"><a href={{ postagem.get_absolute_url }} class="text-body">{{postagem.titulo}}</a></h5>
                                 <p class="card-text">{{postagem.descricao}}</p>
